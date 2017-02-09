@@ -1,0 +1,18 @@
+clair-postgres:
+  container_name: clair-postgres
+  image: postgres:latest
+  restart: always
+  net: ${CUSTOM_NETWORK_NAME}
+  environment:
+    POSTGRES_PASSWORD: password
+    
+adop-clair:
+  container_name: adop-clair
+  image: dockerhub.accenture.com/john.arcy.r.teodoro/adop-clair:0.1
+  restart: always
+  net: ${CUSTOM_NETWORK_NAME}
+  expose:
+    - "6060-6061"
+  environment:
+    - "POSTGRES_URL=${POSTGRES_URL}"
+  command: [-config, /config/config.yaml]
