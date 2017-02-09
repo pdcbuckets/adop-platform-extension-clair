@@ -19,8 +19,6 @@ services:
       - clair-postgres
     expose:
       - "6060-6061"
-    environment:
-      - "POSTGRES_URL=${POSTGRES_URL}"
     command: [-config, /config/config.yaml]
 
 networks:
